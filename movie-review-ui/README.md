@@ -1,1 +1,2 @@
-This library contains Excalidraw prefabs designed for a movie-review interface — including star ratings, review cards, posters, and UI components inspired by streaming dashboards.
+# Movie-Review-UI-Kit
+ A modern Excalidraw library of movie review UI components — including rating cards, posters, and dashboard prefabs for visual storytelling.
