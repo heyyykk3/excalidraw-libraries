@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Athena Board – Prefab Library</title>
+  <link rel="icon" type="image/png"
+        href="https://devfortress.com/wp-content/uploads/2025/10/Logo-square-1000px-transparent-background.png" />
+
+  <!-- Fonts / Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Rubik:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+
+  <style>
+    :root{
+      /* Soft Neutral Warm palette */
+      --sand-cream:#F7F2EB;   /* fundo claro */
+      --espresso:#2E2722;     /* fundo escuro / footer */
+      --clay-beige:#D4BFAA;   /* acento suave */
+      --terracotta:#C97C5D;   /* acento forte / CTA */
+      --deep-brown:#3B302A;   /* texto principal */
+      --copper-red:#B85C4F;   /* hover / segundo CTA */
+      --moss-green:#A6B77A;   /* success */
+      --brick-rose:#B96A65;   /* error / detalhe */
+      --card-bg:#FFF9F3;      /* cartões */
+      --stroke-soft:#E7DCD0;  /* borda leve */
+      --muted-text:#7C6B5D;   /* texto secundário */
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:'Rubik','Karla','Roboto',Arial,sans-serif;
+      background:linear-gradient(135deg,#F7F2EB,#E8D9CC);
+      color:var(--deep-brown);
+    }
+
+    a{color:var(--terracotta);}
+    a:hover{color:var(--copper-red);}
+
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 24px;
+    }
+
+    /* ===== Header ===== */
+    header{
+      background:#F4EBE1;
+      color:var(--deep-brown);
+      padding:28px 0;
+      border-bottom:3px solid #E3D5C7;
+      border-radius:0 0 24px 24px;
+      box-shadow:0 4px 18px rgba(46,39,34,0.06);
+    }
+    .brand-wrap{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .brand-wrap img{
+      width:64px;
+      height:64px;
+      object-fit:contain;
+      display:block;
+      border-radius:20px;
+      background:#F0E2D4;
+      box-shadow:0 6px 16px rgba(46,39,34,0.18);
+      padding:8px;
+    }
+    .brand-title h1{
+      margin:0;
+      font:800 2.1rem/1.1 Rubik,Arial,sans-serif;
+      color:var(--espresso);
+    }
+    .brand-title p{
+      margin:.35rem 0 0;
+      font:400 1.02rem Karla,Arial,sans-serif;
+      color:var(--muted-text);
+    }
+
+    .cta-buttons{
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      margin-top:16px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      padding:12px 22px;
+      border:none;
+      border-radius:999px;
+      font-weight:700;
+      text-decoration:none;
+      cursor:pointer;
+      font-size:0.98rem;
+      letter-spacing:.02em;
+    }
+    .btn-primary{
+      background:var(--terracotta);
+      color:#FFF7F1;
+      box-shadow:0 8px 18px rgba(200,124,93,0.35);
+    }
+    .btn-primary:hover{
+      background:var(--copper-red);
+    }
+    .btn-secondary{
+      background:#F7F2EB;
+      color:var(--deep-brown);
+      border:2px solid var(--clay-beige);
+    }
+    .btn-secondary:hover{
+      background:#EFE3D5;
+    }
+
+    /* ===== Gallery ===== */
+    .gallery-section{
+      background:rgba(247,242,235,0.92);
+      border-radius:32px;
+      margin:28px auto;
+      padding:34px 18px 40px;
+      border:1px solid #E8DDD0;
+      box-shadow:0 12px 28px rgba(46,39,34,0.06);
+    }
+    .gallery-title{
+      text-align:center;
+      margin:0 0 18px;
+      font:800 2rem Rubik,Arial,sans-serif;
+      color:var(--espresso);
+    }
+    .grid{
+      display:grid;
+      gap:28px;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    }
+
+    .card{
+      background:var(--card-bg);
+      border:1px solid var(--stroke-soft);
+      border-radius:22px;
+      box-shadow:0 10px 22px rgba(46,39,34,0.06);
+      padding:16px 16px 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 14px 28px rgba(46,39,34,0.12);
+      border-color:var(--clay-beige);
+    }
+
+    .thumb{
+      width:100%;
+      aspect-ratio:4/3;
+      border-radius:16px;
+      background:#F2E7DA;
+      border:1px solid #E5D7C8;
+      overflow:hidden;
+      display:block;
+    }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+    .caption{
+      margin:12px 0 0;
+      text-align:center;
+      font:700 1.02rem Karla,Arial,sans-serif;
+      color:var(--deep-brown);
+    }
+
+    /* ===== Info / Stats / Instructions / Footer ===== */
+    .info-section{
+      margin:36px auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+      gap:28px;
+    }
+    .info-card{
+      background:#2E2722;
+      color:#F8F4EE;
+      border-radius:24px;
+      padding:22px 20px 24px;
+      box-shadow:0 8px 22px rgba(46,39,34,0.45);
+    }
+    .info-icon{
+      font-size:1.9rem;
+      margin-bottom:10px;
+      color:var(--moss-green);
+    }
+    .info-title{
+      font-weight:800;
+      margin-bottom:6px;
+      font-size:1.02rem;
+    }
+    .info-text{
+      font:400 .98rem Karla,Arial,sans-serif;
+      color:#F4EBE1;
+    }
+    .info-text a{
+      color:#FCE0D3;
+      text-decoration:underline;
+    }
+
+    .stats-section{
+      margin: 20px auto 34px;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:40px;
+      color:var(--deep-brown);
+    }
+    .stat-card{
+      text-align:center;
+      min-width:120px;
+    }
+    .stat-main{
+      font:800 2.2rem Rubik,Arial,sans-serif;
+      color:var(--terracotta);
+    }
+
+    .instructions-section{
+      background:rgba(212,191,170,0.75);
+      color:var(--deep-brown);
+      border-radius:24px;
+      padding:20px 16px 22px;
+      width:95%;
+      margin: 10px auto 26px;
+      text-align:center;
+      box-shadow:0 6px 18px rgba(46,39,34,0.18);
+      font:400 .98rem Karla,Arial,sans-serif;
+    }
+    .instructions-section h4{
+      margin:0 0 8px;
+      font:700 1.05rem Rubik,Arial,sans-serif;
+      color:var(--espresso);
+    }
+
+    footer{
+      padding:24px 0 18px;
+      text-align:center;
+      background:var(--espresso);
+      border-top:3px solid #4A3E37;
+      color:#F7F2EB;
+      font:400 .9rem Karla,Arial,sans-serif;
+      border-radius:24px 24px 0 0;
+      margin-top:10px;
+    }
+    footer a{
+      color:#F7F2EB;
+      text-decoration:underline;
+    }
+
+    @media (max-width:600px){
+      header{padding:22px 0;}
+      .gallery-section{padding:26px 12px 32px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ===== Header ===== -->
+    <header>
+      <div class="brand-wrap">
+        <img src="https://devfortress.com/wp-content/uploads/2025/10/Logo-square-1000px-transparent-background.png" alt="Athena Board logo">
+        <div class="brand-title">
+          <h1>Athena Board</h1>
+          <p>Prefab library of <strong>15</strong> ready-to-use design components for modern app & e-commerce layouts.</p>
+        </div>
+      </div>
+      <div class="cta-buttons">
+        <a href="https://excalidraw.com/?addLibrary=https%3A%2F%2Fraw.githubusercontent.com%2Fexcalidraw%2Fexcalidraw-libraries%2Fjessenahat-e-commerce-essentials-1762652930531%2Flibraries%2Fjessenahat%2Fe-commerce-essentials.excalidrawlib%3Fraw%3Dtrue" class="btn btn-primary" target="_blank">Add to Whiteboard</a>
+        <a class="btn btn-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/DevFortress-Inc/excalidraw-libraries">
+          View on GitHub
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== Side-by-side Gallery ===== -->
+    <section class="gallery-section">
+      <h2 class="gallery-title">Library Preview</h2>
+
+      <div class="grid">
+        <!-- 1 -->
+        <article class="card">
+          <figure class="thumb">
+             <img src="images/Toast Notification.png" alt="Toast Notification prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">Toast Notification</figcaption>
+        </article>
+
+        <!-- 2 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/Settings Page.png" alt="Settings Page prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">Settings Page</figcaption>
+        </article>
+
+        <!-- 3 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/Search Page.png" alt="Search Page prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">Search Page</figcaption>
+        </article>
+
+        <!-- 4 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/Scan Page.png" alt="Scan Page prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">Scan Page</figcaption>
+        </article>
+
+        <!-- 5 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/Rating Stars.png" alt="Rating Stars prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">Rating Stars</figcaption>
+        </article>
+
+        <!-- 6 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/Purchase success modal.png" alt="Purchase success modal prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">Purchase success modal</figcaption>
+        </article>
+
+        <!-- 7 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/AboutUsPage.png" alt="AboutUsPage prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">About Us Page</figcaption>
+        </article>
+
+        <!-- 8 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/Profile Page.png" alt="Profile Page prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">Profile Page</figcaption>
+        </article>
+
+        <!-- 9 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/Order History.png" alt="Order History" loading="lazy">
+          </figure>
+          <figcaption class="caption">Order History</figcaption>
+        </article>
+
+        <!-- 10 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/Loading ScreenSpinner.png" alt="Loading Screen Spinner prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">Loading Screen/Spinner</figcaption>
+        </article>
+
+        <!-- 11 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/HomePage.png" alt="Pagebar prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">HomePage</figcaption>
+        </article>
+
+        <!-- 12 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/ErrorConnection Lost.png" alt="ErrorConnection Lost prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">ErrorConnection Lost</figcaption>
+        </article>
+
+        <!-- 13 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/CTA buttons variants.png" alt="CTA buttons variants prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">CTA buttons variants</figcaption>
+        </article>
+
+        <!-- 14 -->
+        <article class="card">
+          <figure class="thumb">
+           <img src="images/Coupon  Promo Code Field.png" alt="Coupon  Promo Code Field prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">Coupon  Promo Code Field</figcaption>
+        </article>
+
+        <!-- 15 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/Add to cart Section.png" alt="Add to cart Section prefab" loading="lazy">
+          </figure>
+          <figcaption class="caption">Add to cart Section</figcaption>
+        </article>
+      </div>
+    </section>
+
+    <!-- About / How-to / Signature -->
+    <section class="info-section">
+      <div class="info-card">
+        <div class="info-icon"><i class="material-icons">bolt</i></div>
+        <div class="info-title">Open Source & Free</div>
+        <div class="info-text">
+          This library is open source and free to use. Clone, remix, and ship it in your own projects.
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-paint-brush"></i></div>
+        <div class="info-title">Athena Board – Prefab Library</div>
+        <div class="info-text">
+          Ready-to-use UI prefabs designed for modern apps and dashboards. Drop them into your whiteboard and build faster.
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">🌐</div>
+        <div class="info-title">Creator</div>
+        <div class="info-text">
+          Assets by <strong>Jessica Nahat</strong>.<br/>
+          Contact: <a href="mailto:jessicanahat@gmail.com">jessicanahat@gmail.com</a><br/>
+          GitHub: <a href="https://github.com/Jessenahat" target="_blank" rel="noopener">github.com/Jessenahat</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <div class="stat-card">
+        <div class="stat-main">15</div>
+        <div>Design Elements</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-main">100%</div>
+        <div>Free & Open Source</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-main">…</div>
+        <div>Creative Possibilities</div>
+      </div>
+    </section>
+
+    <section class="instructions-section">
+      <h4>How to add</h4>
+      <div>
+        Click the <strong>Add to Whiteboard</strong> button at the top. The library loads in seconds — use the prefabs directly in Athena Board.
+      </div>
+    </section>
+
+    <footer>
+      Athena Board – Prefab Library • Open source • © <span id="year"></span> Jessica Nahat •
+      <a href="mailto:jessicanahat@gmail.com">Contact</a>
+    </footer>
+  </div>
+
+  <script>
+    // keep footer year current
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

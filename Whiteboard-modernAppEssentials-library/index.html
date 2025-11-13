@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Athena Board – Prefab Library</title>
+  <link rel="icon" type="image/png"
+        href="https://devfortress.com/wp-content/uploads/2025/10/Logo-square-1000px-transparent-background.png" />
+
+  <!-- Fonts / Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Rubik:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+
+  <style>
+    :root{
+      --brand:#340083; --bg1:#340063; --bg2:#6D49DC; --ink:#EFE3FF; --teal:#00CCD1; --card:#ffffff; --ink-dark:#1c1240;
+      --panel:#efe9fb; --stroke:#e6dfff; --chip:#917ab5;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Rubik','Karla','Roboto',Arial,sans-serif;
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      color:var(--ink);
+    }
+    .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+    /* ===== Header (Athena spec) ===== */
+    header{
+      background:#F5F3FF; color:var(--brand);
+      padding:28px 0; border-bottom:4px solid #E6E1FF;
+    }
+    .brand-wrap{display:flex;align-items:center;gap:18px;justify-content:center;}
+    .brand-wrap img{width:64px;height:64px;object-fit:contain;display:block}
+    .brand-title h1{margin:0;font:800 2.1rem/1.1 Rubik,Arial,sans-serif;color:#340083}
+    .brand-title p{margin:.25rem 0 0;font:400 1.05rem Karla,Arial,sans-serif;color:#340083}
+    .cta-buttons{display:flex;gap:14px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+    .btn{padding:12px 22px;border:none;border-radius:999px;font-weight:700;text-decoration:none;cursor:pointer}
+    .btn-primary{background:var(--teal);color:#06242a}
+    .btn-primary:hover{filter:brightness(1.05)}
+    .btn-secondary{background:#e7e2ff;color:#340083;border:2px solid #d5ccff}
+    .btn-secondary:hover{background:#ddd4ff}
+
+    /* ===== Gallery ===== */
+    .gallery-section{
+      background:#efe3ff33; /* soft purple mist */
+      border-radius:32px; margin:28px auto; padding:34px 18px 40px;
+      backdrop-filter: blur(2px);
+    }
+    .gallery-title{
+      text-align:center; margin:0 0 18px;
+      font:800 2rem Rubik,Arial,sans-serif; color:#2e0f84;
+    }
+    .grid{
+      display:grid; gap:28px;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    }
+    .card{
+      background:var(--card);
+      border:2px solid var(--stroke);
+      border-radius:22px;
+      box-shadow:0 10px 22px rgba(18,0,40,.08);
+      padding:16px 16px 18px;
+      display:flex;flex-direction:column;align-items:center;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{ transform:translateY(-4px); box-shadow:0 14px 28px rgba(18,0,40,.16); }
+    .thumb{
+      width:100%;
+      aspect-ratio:4/3;
+      border-radius:16px;
+      background:var(--panel);
+      border:1px solid var(--stroke);
+      overflow:hidden;
+      display:block;
+    }
+    .thumb img{ width:100%; height:100%; object-fit:contain; display:block; }
+    .caption{
+      margin:12px 0 0; text-align:center;
+      font:800 1.05rem Karla,Arial,sans-serif; color:#2b0a82;
+    }
+
+    /* Info / Stats / Footer from your previous page */
+    .info-section{margin:36px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:28px}
+    .info-card{background:#6D49DC;color:var(--ink);border-radius:24px;padding:26px 20px;box-shadow:0 7px 24px rgba(52,0,99,.07)}
+    .info-icon{font-size:1.9rem;margin-bottom:8px;color:var(--teal)}
+    .info-title{font-weight:800;margin-bottom:4px}
+    .stats-section{margin: 24px auto 34px;display:flex;justify-content:center;gap:60px}
+    .stat-main{font:800 2.3rem Rubik,Arial,sans-serif;color:var(--teal)}
+    .instructions-section{background:rgba(145,122,181,.6);color:var(--ink);border-radius:24px;padding:22px 16px;width:95%;margin: 22px auto;text-align:center}
+    footer{padding:28px 0 18px;text-align:center;background:#583890;border-top:3px solid #917AB5}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ===== Header ===== -->
+    <header>
+      <div class="brand-wrap">
+        <img src="https://devfortress.com/wp-content/uploads/2025/10/Logo-square-1000px-transparent-background.png" alt="Athena Board logo">
+        <div class="brand-title">
+          <h1>Athena Board</h1>
+          <p>prefab library of <strong>15</strong> ready-to-use design components for <strong>Modern App Essentials</strong>.</p>
+        </div>
+      </div>
+      <div class="cta-buttons">
+        <a href="https://excalidraw.com/?addLibrary=https%3A%2F%2Fraw.githubusercontent.com%2Fexcalidraw%2Fexcalidraw-libraries%2Fjessenahat-modern-app-essentials-1762542159915%2Flibraries%2Fjessenahat%2Fmodern-app-essentials.excalidrawlib%3Fraw%3Dtrue" class="btn btn-primary" target="_blank">Add to Whiteboard</a>
+        <a class="btn btn-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/DevFortress-Inc/excalidraw-libraries">
+          View on GitHub
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== Side-by-side Gallery ===== -->
+    <section class="gallery-section">
+      <h2 class="gallery-title">Library Preview</h2>
+
+      <div class="grid">
+        <!-- 1 -->
+        <article class="card">
+          <figure class="thumb">
+             <img src="images/reset password.png" alt="Reset Password prefab" loading="lazy">              
+          </figure>
+          <figcaption class="caption">Reset Password</figcaption>
+        </article>
+
+        <!-- 2 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/2-fact.png" alt="2-Fatctor Authentication prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">two-factor authentication</figcaption>
+        </article>
+
+        <!-- 3 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/add comment.png" alt="Add Comment prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">About Page</figcaption>
+        </article>
+
+        <!-- 4 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/breadcrumb menu.png" alt="Breadcrumb prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">breadcrumb menu</figcaption>
+        </article>
+
+        <!-- 5 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/dashboard.png" alt="Dashboard prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Dashboard</figcaption>
+        </article>
+
+        <!-- 6 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/footer.png" alt="Footer prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Footer</figcaption>
+        </article>
+
+        <!-- 7 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/icons.png" alt="Icons prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Essential Icons</figcaption>
+        </article>
+
+        <!-- 8 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/loading.png" alt="loading prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Loading</figcaption>
+        </article>
+
+        <!-- 9 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/lock.png" alt="Lock prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Lock Icon</figcaption>
+        </article>
+
+        <!-- 10 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/login.png" alt="Login prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Login Page</figcaption>
+        </article>
+
+        <!-- 11 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/page bar.png" alt="Pagebar prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Pagination bar</figcaption>
+        </article>
+
+        <!-- 12 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/page not found.png" alt="Page not found prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Page not Found</figcaption>
+        </article>
+
+        <!-- 13 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/forgotpwd.png" alt="Forgot Password prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Forgot Password</figcaption>
+        </article>
+
+        <!-- 14 -->
+        <article class="card">
+          <figure class="thumb">
+           <img src="images/save.png" alt="Save prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Save Message</figcaption>
+        </article>
+
+        <!-- 15 -->
+        <article class="card">
+          <figure class="thumb">
+            <img src="images/signup.png" alt="Signup prefab" loading="lazy"> 
+          </figure>
+          <figcaption class="caption">Signup Page</figcaption>
+        </article>
+      </div>
+    </section>
+
+<!-- About / How-to / Signature -->
+<section class="info-section">
+  <div class="info-card">
+    <div class="info-icon"><i class="material-icons">bolt</i></div>
+    <div class="info-title">Open Source & Free</div>
+    <div class="info-text">
+      This library is open source and free to use. Clone, remix, and ship it in your own projects.
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-icon"><i class="fa-solid fa-paint-brush"></i></div>
+    <div class="info-title">Athena Board – Prefab Library</div>
+    <div class="info-text">
+      Ready-to-use UI prefabs designed for modern apps and dashboards. Drop them into your whiteboard and build faster.
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-icon">🌐</div>
+    <div class="info-title">Creator</div>
+    <div class="info-text">
+      Assets by <strong>Jessica Nahat</strong>. Contact: <a href="mailto:jessicanahat@gmail.com">jessicanahat@gmail.com</a><br/>
+      GitHub: <a href="https://github.com/Jessenahat" target="_blank" rel="noopener">github.com/Jessenahat</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section"> <div class="stat-card"><div class="stat-main">15</div><div>Design Elements</div></div> 
+  <div class="stat-card"><div class="stat-main">100%</div><div>Free & Open Source</div></div> 
+  <div class="stat-card"><div class="stat-main">…</div><div>Creative Possibilities</div></div>
+ </section>
+<section class="instructions-section">
+  <h4>How to add</h4>
+  <div>
+    Click the <strong>Add to Whiteboard</strong> button at the top. The library loads in seconds—use the prefabs directly in Athena Board.
+  </div>
+  
+</section>
+
+<footer>
+  Athena Board – Prefab Library • Open source • © <span id="year"></span> Jessica Nahat •
+  <a href="mailto:jessicanahat@gmail.com" style="color:#EFE3FF">Contact</a>
+</footer>
+
+<script>
+  // keep footer year current
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+

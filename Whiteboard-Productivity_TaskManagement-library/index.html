@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Productivity Dashboard Kit – Prefab Library</title>
+  <link rel="icon" type="image/png"
+        href="https://devfortress.com/wp-content/uploads/2025/10/Logo-square-1000px-transparent-background.png" />
+
+  <!-- Fonts / Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Rubik:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+
+  <style>
+    :root{
+      /* Productivity / Task Management palette */
+      --porcelain:#F4F6F7;          /* base light */
+      --slate:#2C2F36;              /* base dark / footer */
+      --steel:#4A90E2;              /* primary action (blue) */
+      --mint:#8DD3B6;               /* success / positive */
+      --peach:#FFB68A;              /* warning / soft attention */
+      --error:#E57373;              /* error / danger */
+      --card:#FFFFFF;               /* card bg */
+      --stroke:#E4E8EC;             /* soft border */
+      --ink:#222325;                /* main text */
+      --muted:#6B7280;              /* secondary text */
+      --dot:#D9C6B0;                /* subtle neutral accent */
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Rubik','Karla','Roboto',Arial,sans-serif;
+      background:linear-gradient(180deg,#F7F9FA 0%, #F4F6F7 100%);
+      color:var(--ink);
+    }
+    a{color:var(--steel);text-decoration:none}
+    a:hover{opacity:.9}
+
+    .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+    /* ===== Header ===== */
+    header{
+      background:#FFFFFF;
+      color:var(--ink);
+      padding:28px 0 22px;
+      border-bottom:1px solid var(--stroke);
+      position:sticky;top:0;z-index:3;
+      backdrop-filter:saturate(120%) blur(6px);
+    }
+    .brand{
+      display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;
+    }
+    .brand img{
+      width:64px;height:64px;object-fit:contain;display:block;border-radius:16px;
+      background:#EEF2F7;box-shadow:0 8px 20px rgba(44,47,54,.08);padding:8px;
+    }
+    .brand h1{margin:0;font:800 2rem/1 Rubik,Arial,sans-serif;color:var(--slate)}
+    .brand p{margin:.4rem 0 0;font:400 1.02rem Karla,Arial,sans-serif;color:var(--muted)}
+
+    .cta{display:flex;gap:12px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+    .btn{
+      padding:12px 20px;border:none;border-radius:999px;font-weight:700;cursor:pointer;
+      font-size:.98rem;letter-spacing:.02em;display:inline-flex;align-items:center;gap:8px
+    }
+    .btn-primary{background:var(--steel);color:#fff;box-shadow:0 8px 20px rgba(74,144,226,.32)}
+    .btn-primary:hover{filter:brightness(1.06)}
+    .btn-secondary{background:#fff;color:var(--ink);border:2px solid var(--stroke)}
+    .btn-secondary:hover{background:#F8FAFB}
+
+    /* ===== Gallery ===== */
+    .section{
+      background:#fff;border:1px solid var(--stroke);
+      border-radius:28px; margin:28px auto; padding:28px 18px 36px;
+      box-shadow:0 10px 30px rgba(44,47,54,.06);
+    }
+    h2.section-title{
+      margin:0 0 16px;text-align:center;font:800 1.8rem Rubik,Arial,sans-serif;color:var(--slate)
+    }
+    .grid{
+      display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:18px;
+      padding:14px 14px 16px;
+      display:flex;flex-direction:column;align-items:center;
+      transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    }
+    .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(44,47,54,.10);border-color:#DFE6EE}
+    .thumb{
+      width:100%;aspect-ratio:4/3;border-radius:14px;background:#F5F8FB;border:1px solid #E9EEF3;overflow:hidden;
+    }
+    .thumb img{width:100%;height:100%;object-fit:contain;display:block}
+    .caption{
+      margin:11px 0 0;text-align:center;font:700 1rem Karla,Arial,sans-serif;color:var(--ink)
+    }
+
+    /* ===== Info / Stats ===== */
+    .info{margin:34px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px}
+    .info-card{
+      background:linear-gradient(180deg,#FDFEFF,#F7FAFD);
+      border:1px solid var(--stroke);border-radius:18px;padding:20px;
+      box-shadow:0 8px 22px rgba(44,47,54,.06);color:var(--ink)
+    }
+    .info-card .icon{font-size:1.6rem;color:var(--steel);margin-bottom:6px}
+    .info-card b{display:block;margin-bottom:4px}
+
+    .stats{margin: 10px auto 28px;display:flex;gap:36px;justify-content:center;flex-wrap:wrap;color:var(--ink)}
+    .stat .big{font:800 2rem Rubik,Arial,sans-serif;color:var(--steel);text-align:center}
+
+    /* ===== Footer ===== */
+    footer{
+      margin-top:12px;padding:24px 0 18px;text-align:center;background:var(--slate);color:#F1F5F9;
+      border-top:3px solid #1F2228;border-radius:24px 24px 0 0;
+      font:400 .92rem Karla,Arial,sans-serif
+    }
+    footer a{color:#fff;text-decoration:underline}
+
+    /* helpful color badges (optional tiny legend) */
+    .legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:8px 0 0}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .d-steel{background:var(--steel)} .d-mint{background:var(--mint)} .d-peach{background:var(--peach)}
+    .d-error{background:var(--error)} .d-dot{background:var(--dot)}
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ===== Header ===== -->
+    <header>
+      <div class="brand">
+        <img src="https://devfortress.com/wp-content/uploads/2025/10/Logo-square-1000px-transparent-background.png" alt="Logo">
+        <div>
+          <h1>Productivity Dashboard Kit</h1>
+          <p>15+ prefabs for task & project management — clean, modern, and ready to use.</p>
+        </div>
+      </div>
+      <div class="cta">
+        
+        <a class="btn btn-primary" target="_blank"
+           href="https://excalidraw.com/?addLibrary=https%3A%2F%2Fraw.githubusercontent.com%2Fexcalidraw%2Fexcalidraw-libraries%2Fjessenahat-productivity-dashboard-kit-1762992057470%2Flibraries%2Fjessenahat%2Fproductivity-dashboard-kit.excalidrawlib%3Fraw%3Dtrue">Add to Whiteboard</a>
+        <a class="btn btn-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/DevFortress-Inc/excalidraw-libraries">
+          View on GitHub
+        </a>
+      </div>
+    </header>
+
+    <!-- ===== Gallery ===== -->
+    <section class="section">
+      <h2 class="section-title">Library Preview</h2>
+
+      <div class="grid">
+        <!-- 1 Assign task to -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Assign task to.png" alt="Assign task to" loading="lazy"></figure>
+          <figcaption class="caption">Assign task to</figcaption>
+        </article>
+
+        <!-- 2 ChatMessageBox -->
+        <article class="card">
+          <figure class="thumb"><img src="images/ChatMessageBox.png" alt="Chat message box" loading="lazy"></figure>
+          <figcaption class="caption">ChatMessageBox</figcaption>
+        </article>
+
+        <!-- 3 Create Task -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Create Task.png" alt="Create Task" loading="lazy"></figure>
+          <figcaption class="caption">Create Task</figcaption>
+        </article>
+
+        <!-- 4 CTA buttons variants -->
+        <article class="card">
+          <figure class="thumb"><img src="images/CTA buttons variants.png" alt="CTA buttons variants" loading="lazy"></figure>
+          <figcaption class="caption">CTA buttons variants</figcaption>
+        </article>
+
+        <!-- 5 File Attachment -->
+        <article class="card">
+          <figure class="thumb"><img src="images/File Attachement.png" alt="File Attachment" loading="lazy"></figure>
+          <figcaption class="caption">File Attachment</figcaption>
+        </article>
+
+        <!-- 6 Header -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Header.png" alt="Header" loading="lazy"></figure>
+          <figcaption class="caption">Header</figcaption>
+        </article>
+
+        <!-- 7 Invitation Page -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Invitiation Page.png" alt="Invitation Page" loading="lazy"></figure>
+          <figcaption class="caption">Invitation Page</figcaption>
+        </article>
+
+        <!-- 8 Labels -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Labels.png" alt="Labels" loading="lazy"></figure>
+          <figcaption class="caption">Labels</figcaption>
+        </article>
+
+        <!-- 9 Project Member -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Project Member.png" alt="Project Member" loading="lazy"></figure>
+          <figcaption class="caption">Project Member</figcaption>
+        </article>
+
+        <!-- 10 Project Status Overall -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Project Status Overall.png" alt="Project Status Overall" loading="lazy"></figure>
+          <figcaption class="caption">Project Status Overall</figcaption>
+        </article>
+
+        <!-- 11 Project Status MessageBox -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Project Staus MessageBox.png" alt="Project Status MessageBox" loading="lazy"></figure>
+          <figcaption class="caption">Project Status MessageBox</figcaption>
+        </article>
+
+        <!-- 12 Recent Activity -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Recent Activity.png" alt="Recent Activity" loading="lazy"></figure>
+          <figcaption class="caption">Recent Activity</figcaption>
+        </article>
+
+        <!-- 13 Task list -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Task list.png" alt="Task list" loading="lazy"></figure>
+          <figcaption class="caption">Task list</figcaption>
+        </article>
+
+        <!-- 14 Toast Notification -->
+        <article class="card">
+          <figure class="thumb"><img src="images/Toast Notification.png" alt="Toast Notification" loading="lazy"></figure>
+          <figcaption class="caption">Toast Notification</figcaption>
+        </article>
+
+        <!-- 15 Weekly Progress -->
+        <article class="card">
+          <figure class="thumb"><img src="images/weekly Progress.png" alt="Weekly Progress" loading="lazy"></figure>
+          <figcaption class="caption">Weekly Progress</figcaption>
+        </article>
+      </div>
+
+      <!-- tiny color legend (optional) -->
+      <div class="legend" aria-hidden="true">
+        <span class="dot d-steel" title="Primary"></span>
+        <span class="dot d-mint"  title="Success"></span>
+        <span class="dot d-peach" title="Warning"></span>
+        <span class="dot d-error" title="Error"></span>
+        <span class="dot d-dot"   title="Neutral accent"></span>
+      </div>
+    </section>
+
+    <!-- ===== Info / About ===== -->
+    <section class="info">
+      <div class="info-card">
+        <div class="icon"><i class="material-icons">bolt</i></div>
+        <b>Open & Free</b>
+        A clean prefab set for task and project management — clone, remix and use in your whiteboard prototypes.
+      </div>
+      <div class="info-card">
+        <div class="icon"><i class="fa-solid fa-layer-group"></i></div>
+        <b>Designed for Focus</b>
+        Neutral cards, soft shadows, and a calm palette to keep attention on your content.
+      </div>
+      <div class="info-card">
+        <div class="icon"><i class="fa-solid fa-user"></i></div>
+        <b>Creator</b>
+        Assets by <strong>Jessica Nahat</strong>. Contact:
+        <a href="mailto:jessicanahat@gmail.com">jessicanahat@gmail.com</a> • GitHub:
+        <a href="https://github.com/Jessenahat" target="_blank" rel="noopener">Jessenahat</a>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><div class="big">15+</div><div>Design Elements</div></div>
+      <div class="stat"><div class="big">100%</div><div>Open Source</div></div>
+      <div class="stat"><div class="big">∞</div><div>Use Cases</div></div>
+    </section>
+
+    <footer>
+      Productivity Dashboard Kit • © <span id="year"></span> Jessica Nahat •
+      <a href="mailto:jessicanahat@gmail.com">Contact</a>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
